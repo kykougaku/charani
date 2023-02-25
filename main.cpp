@@ -3,13 +3,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define width  10
-#define height  10
-#define frame 100
+int width = 10;
+int height = 10;
+int frame = 100;
 
-char buffer[width][height];
+vector<vector<char>> buffer(width, vector<char>(height));
 
-void chara (char s[width][height]);
+void chara (vector<vector<char>> s);
 void charainit (void);
 
 int main(void){
@@ -18,7 +18,7 @@ int main(void){
 		charainit();
 
 		for(int j = 0; j<height; j++){
-			buffer[i/10][j] = 'k';
+			buffer.at(i/10).at(j) = 'k';
 		}
 
 		chara(buffer);
@@ -33,16 +33,16 @@ void charainit (void){
 	fflush(stdout);
 	for(int i = 0; i<width; i++){
 		for(int j = 0; j<height; j++){
-			buffer[i][j]=' ';
+			buffer.at(i).at(j)=' ';
 		}
 	}
 }
 
-void chara (char s[width][height]){
+void chara (vector<vector<char>> s){
 	for(int i = 0; i<height; i++){
 		for(int j = 0; j<width; j++){
 			if(j==width-1) printf("\n");
-			else putchar(s[j][i]);
+			else putchar(s.at(j).at(i));
 
 			fflush(stdout);
 		}
