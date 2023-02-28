@@ -3,24 +3,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int width = 10;
-int height = 10;
+/////////////////////////////////////////////////////
+int width = 50;
+int height = 50;
 int frame = 100;
+vector<char> conv = {'I','X','W'};
+/////////////////////////////////////////////////////
 
 vector<vector<char>> buffer(width, vector<char>(height));
 
 void chara (vector<vector<char>> s);
 void charainit (void);
+void convert (vector<vector<int>> bufint);
 
 int main(void){
 
 	for(int i = 0; i<frame; i++){
-		charainit();
 
 		for(int j = 0; j<height; j++){
-			buffer.at(i/10).at(j) = 'k';
+			buffer.at(i/2).at(j) = 'k';
 		}
 
+		charainit();
 		chara(buffer);
 
 		usleep(5000);
@@ -28,6 +32,13 @@ int main(void){
 	return 0;
 }
 
+void convert (vector<vector<int>> bufint){
+	for(int i = 0; i<height; i++){
+		for(int j = 0; j<width; j++){
+			buffer.at(j).at(i) = conv.at(bufint.at(j).at(i));
+		}
+	}
+}
 void charainit (void){
 	printf("\x1b[H");
 	fflush(stdout);
