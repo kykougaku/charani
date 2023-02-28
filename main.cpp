@@ -4,8 +4,8 @@
 using namespace std;
 
 /////////////////////////////////////////////////////
-int width = 50;
-int height = 50;
+int width = 10;
+int height = 10;
 int frame = 100;
 vector<char> conv = {'I','X','W'};
 /////////////////////////////////////////////////////
@@ -20,14 +20,16 @@ int main(void){
 
 	for(int i = 0; i<frame; i++){
 
-		for(int j = 0; j<height; j++){
-			buffer.at(i/2).at(j) = 'k';
-		}
-
 		charainit();
+
+		vector<vector<int>> bufint (width, vector<int>(height));
+		for(int j = 0; j<height; j++){
+			bufint.at(i%width).at(j) = i%3;
+		}
+		convert(bufint);
 		chara(buffer);
 
-		usleep(5000);
+		usleep(50000);
 	}
 	return 0;
 }
