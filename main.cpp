@@ -4,31 +4,34 @@
 using namespace std;
 
 /////////////////////////////////////////////////////
-int width = 10;
-int height = 10;
+int width = 90;
+int height = 30;
 int frame = 100;
-vector<char> conv = {'I','X','W'};
+vector<char> conv = {' ','I','X','W'};
 /////////////////////////////////////////////////////
 
-vector<vector<char>> buffer(width, vector<char>(height));
 
-void charainit (vector<vector<char>> &bufc);
+void charainit (vector<vector<char>> &bufc, vector<vector<int>> &bufi);
 void chara (vector<vector<char>> &bufc);
-void convert (vector<vector<int>> &bufint, vector<vector<char>> &bufc);
+void convert (vector<vector<int>> &bufi, vector<vector<char>> &bufc);
 
 int main(void){
 
+	vector<vector<char>> buffer(width, vector<char>(height));
+	vector<vector<int>> bufint (width, vector<int>(height));
+
 	for(int i = 0; i<frame; i++){
 
-		charainit(buffer);
+		charainit(buffer, bufint);
 
-		vector<vector<int>> bufint (width, vector<int>(height));
 		for(int j = 0; j<height; j++){
-			bufint.at(i%width).at(j) = i%3;
+			bufint.at(i%width).at(j) = i%conv.size();
 		}
+
 		convert(bufint,buffer);
+
 		chara(buffer);
-		usleep(50000);
+		usleep(90000);
 	}
 	return 0;
 }
@@ -36,12 +39,13 @@ int main(void){
 /////////////////////////////////////////////////////
 
 
-void charainit (vector<vector<char>> &bufc){
+void charainit (vector<vector<char>> &bufc, vector<vector<int>> &bufi){
 	printf("\x1b[H");
 	fflush(stdout);
 	for(int i = 0; i<width; i++){
 		for(int j = 0; j<height; j++){
-			bufc.at(i).at(j)=' ';
+			bufc.at(i).at(j)=conv.at(0);
+			bufi.at(i).at(j)=0;
 		}
 	}
 }
@@ -57,10 +61,10 @@ void chara (vector<vector<char>> &bufc){
 	}
 }
 
-void convert (vector<vector<int>> &bufint, vector<vector<char>> &bufc){
+void convert (vector<vector<int>> &bufi, vector<vector<char>> &bufc){
 	for(int i = 0; i<height; i++){
 		for(int j = 0; j<width; j++){
-			bufc.at(j).at(i) = conv.at(bufint.at(j).at(i));
+			bufc.at(j).at(i) = conv.at(bufi.at(j).at(i));
 		}
 	}
 }
