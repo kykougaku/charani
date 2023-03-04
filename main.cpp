@@ -34,18 +34,7 @@ int main(void){
 		chara(buffer);
 		usleep(9000);
 	}
-	vector<vector<int>> a ={
-		{1,2},
-		{3,4}};
-	vector<vector<int>> b ={
-		{1,2},
-		{3,4}};
-	vector<vector<int>> r = {2,vector<int>(2)};
-	mulp_two(a,b,r);
-	cout<<r.at(0).at(0)<<r.at(0).at(1)<<endl;
-	cout<<r.at(1).at(0)<<r.at(1).at(1)<<endl;
-
-	return 0;
+		return 0;
 }
 
 /////////////////////////////////////////////////////
