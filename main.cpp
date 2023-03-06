@@ -11,7 +11,7 @@ int frame = 100;
 vector<char> conv = {' ','I','X','W'};
 /////////////////////////////////////////////////////
 
-
+void charaflush (void);
 void charainit (vector<vector<char>> &bufc, vector<vector<int>> &bufi);
 void chara (vector<vector<char>> &bufc);
 void convert (vector<vector<int>> &bufi, vector<vector<char>> &bufc);
@@ -24,13 +24,23 @@ int main(void){
 	for(int i = 0; i<frame; i++){
 
 		charainit(buffer, bufint);
-
-		for(int j = 0; j<height; j++){
-			bufint.at(i%width).at(j) = i%conv.size();
+		//////////////////////////////////////////////////////////////
+		vector<vector<float>> zp = {{0},{0},{1}};
+		vector<vector<float>> zm = {{0}, {0}, {-1}};
+		vector<vector<float>> yp = {{0}, {1}, {0}};
+		vector<vector<float>> yp = {{0}, {-1}, {0}};
+		vector<vector<float>> xp = {{1}, {0}, {0}};
+		vector<vector<float>> xp = {{-1}, {0}, {0}};
+		
+		for(int i = 0; i<height; i++){
+			for(int j = 0; j<width; j++){
+				if(e)
+			}
 		}
-
+		//////////////////////////////////////////////////////////////
 		convert(bufint,buffer);
 
+		charaflush();
 		chara(buffer);
 		usleep(9000);
 	}
@@ -38,10 +48,11 @@ int main(void){
 }
 
 /////////////////////////////////////////////////////
-
-void charainit (vector<vector<char>> &bufc, vector<vector<int>> &bufi){
+void charaflush(void){
 	printf("\x1b[H");
 	fflush(stdout);
+}
+void charainit (vector<vector<char>> &bufc, vector<vector<int>> &bufi){
 	for(int i = 0; i<height; i++){
 		for(int j = 0; j<width; j++){
 			bufc.at(j).at(i)=conv.at(0);
